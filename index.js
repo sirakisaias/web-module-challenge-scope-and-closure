@@ -174,15 +174,16 @@ function scoreboard(getInningScore, inning, numPlay) {
   let away  =0;
 
   for (let i = 0; i < numPlay; i++) {
-    home =home + getInningScore(inning);
-    away  =away+ getInningScore(inning);
-    finalScore.push(`Inning ${i}: Away ${away.away} - Home ${home.home}`); 
+    const currentInning =  getInningScore(inning);
+    home =home + currentInning.home;
+    away  =away+ currentInning.away;
+    finalScore.push(`Inning ${i}: Away ${currentInning.away} - Home ${currentInning.home}`); 
   }
   if (home>away || home<away) {
-     finalScore.push(`Final Score: Away ${away.away} - Home ${home.home}`);
+     finalScore.push(`Final Score: Away ${currentInning.away} - Home ${currentInning.home}`);
      return finalScore;
   } else if (home===away){
-     finalScore.push(`The game will require extra inning: Away ${away.away} - Home ${home.home}`);
+     finalScore.push(`The game will require extra inning: Away ${currentInning.away} - Home ${currentInning.home}`);
      return finalScore;
   }
   return finalScore;
