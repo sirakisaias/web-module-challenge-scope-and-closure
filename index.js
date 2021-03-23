@@ -36,11 +36,11 @@ console.log(processFirstItem(['foo','foo'], addStrings));
   one is using closure but the other one is not
   
   2. Which of the two uses a closure? How can you tell?
-  counter 1
+  counter 1, because it is inside another function
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-     if you have too many counters have been called and you have multiple function, if there is only counter 1 variable  available 
+     if you have too many functions have been called and you have multiple function, if there is only counter 1 variable  available 
 */
 
 // counter1 code
@@ -166,10 +166,28 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScore, inning, numPlay) {
   /* CODE HERE */
-}
+ 
+  let finalScore=[];
+  let home =0;
+  let away  =0;
 
+  for (let i = 0; i < numPlay; i++) {
+    home =home + getInningScore(inning);
+    away  =away+ getInningScore(inning);
+    finalScore.push(`Inning ${i}: Away ${away.away} - Home ${home.home}`); 
+  }
+  if (home>away || home<away) {
+     finalScore.push(`Final Score: Away ${away.away} - Home ${home.home}`);
+     return finalScore;
+  } else if (home===away){
+     finalScore.push(`The game will require extra inning: Away ${away.away} - Home ${home.home}`);
+     return finalScore;
+  }
+  return finalScore;
+}
+console.log(scoreboard(getInningScore,inning, 9));
 
 
 
